@@ -9,6 +9,7 @@ function Navbar() {
       <Link to="/contato" className="hover:underline">Contato nav</Link>
       <Link to="/produto" className="hover:underline">Produto nav</Link>
       <Link to="/servico" className="hover:underline">Serviço nav</Link>
+      <Link to="/politica-empresa" className="hover:underline">Política da Empresa nav</Link>
       
     </nav>
   )
