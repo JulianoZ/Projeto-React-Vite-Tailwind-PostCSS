@@ -18,7 +18,7 @@ jobs:
         id: get_version
         uses: sergeysova/jq-action@v2
         with:
-          cmd: jq.exe -r ".version" package.json
+          cmd: jq -r ".version" package.json
 
       - name: Criar Tag e Release Automática
         uses: ncipollo/release-action@v1
@@ -28,6 +28,6 @@ jobs:
           body: "Atualização automática da versão gerada via pipeline."
           draft: false
           prerelease: false
-          allowUpdates: true  # Permite atualizar caso a release já exista
+          allowUpdates: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
