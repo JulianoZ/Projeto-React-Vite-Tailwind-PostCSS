@@ -1,4 +1,4 @@
-name: Release Please
+name: Auto Release
 
 on:
   push:
@@ -6,10 +6,28 @@ on:
       - main
 
 jobs:
-  release-please:
+  create-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Ler versão do package.json
+        id: get_version
+        uses: sergeysova/jq-action@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
+          cmd: jq.exe -r ".version" package.json
+
+      - name: Criar Tag e Release Automática
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ steps.get_version.outputs.value }}
+          name: Versão ${{ steps.get_version.outputs.value }}
+          body: "Atualização automática da versão gerada via pipeline."
+          draft: false
+          prerelease: false
+          allowUpdates: true  # Permite atualizar caso a release já exista
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
