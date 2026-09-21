@@ -11,6 +11,8 @@ Listagens de serviços <br />
  <li> Serviço 3</li>
  <li> Serviço 4</li>
  <li> Serviço 5</li>
+ <li> Serviço 6</li>
+ <li> Serviço 7</li> 
 </ul>
 
 
